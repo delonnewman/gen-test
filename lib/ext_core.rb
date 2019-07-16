@@ -1,3 +1,5 @@
+require 'date'
+
 # Some extentions to the core Object class
 class Object
   # Return self
