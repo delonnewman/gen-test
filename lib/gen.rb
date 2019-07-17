@@ -45,5 +45,5 @@ module Gen
     end
   end
 
-  module_function :generator?, :sample, :generate, :such_that, :one_of
+  module_function :generator?, :sample, :generate, :where, :one_of
 end
