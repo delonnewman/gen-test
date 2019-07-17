@@ -1,22 +1,38 @@
 module Gen
+  class Generator
+    def initialize(gen = nil, &blk)
+      @gen = gen || blk or raise "A proc or a block is required"
+    end
+
+    def generate
+      @gen.call
+    end
+    alias call generate
+  end
+
   def generator?(val)
-    val.respond_to?(:call) or val.respond_to?(:generate)
+    val.is_a?(Generator)
   end
 
   def sample(gen, n = 10)
-    (0..n).map { eval_generator(gen) }
+    (0..n).map { generate(gen) }
   end
 
-  def such_that(gen, pred)
-    lambda do
-      val = eval_generator(gen)
-      val = eval_generator(gen) until pred.call(val)
+  def where(gen, pred, max_tries = 10)
+    Generator.new do
+      tries = 0
+      until (val = generate(gen)) and pred.call(val)
+        tries += 1
+        if tries >= max_tries
+          raise "We've tried generating a value from #{gen.inspect} with #{pred.inspect} #{max_tries} times and failed"
+        end
+      end
       val
     end
   end
 
   def one_of(generators)
-    eval_generator(generators.to_a.sample)
+    generate(generators.to_a.sample)
   end
 
   def generate(generator, *args)
