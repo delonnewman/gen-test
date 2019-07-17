@@ -11,7 +11,7 @@ module Gen
   end
 
   def generator?(val)
-    val.is_a?(Generator)
+    val.respond_to?(:generate)
   end
 
   def sample(gen, n = 10)
@@ -35,11 +35,11 @@ module Gen
     generate(generators.to_a.sample)
   end
 
-  def generate(generator, *args)
+  def generate(generator)
     if generator.respond_to?(:call)
-      generator.call(*args)
+      generator.call
     elsif generator.respond_to?(:generate)
-      generator.generate(*args)
+      generator.generate
     else
       generator
     end

@@ -1,4 +1,6 @@
 require 'date'
+require 'faker'
+require 'regexp-examples'
 
 # Some extentions to the core Object class
 class Object
@@ -178,7 +180,7 @@ class Range
 end
 
 class Regexp
-  def generate(*_args)
+  def generate
     random_example
   end
 end

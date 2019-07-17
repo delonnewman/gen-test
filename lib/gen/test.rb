@@ -6,6 +6,10 @@ module Gen
     LOWER_BOUND = ENV.fetch('TEST_LOWER_BOUND', 10).to_i
     UPPER_BOUND = ENV.fetch('TEST_UPPER_BOUND', 20).to_i
   
+    def self.included(base)
+      base.include(Gen)
+    end
+
     def for_all(*generators)
       for_n([LOWER_BOUND, UPPER_BOUND], *generators, &Proc.new)
     end
@@ -26,13 +30,18 @@ module Gen
       end
     end
   
-    def for_each(generators)
-      if block_given?
-        generators.each do |generator|
-          yield(Gen.generate(generator))
+    def for_each(*collections)
+      unless collections.empty?
+        size = collections.first.size
+        raise "All collections must be the same size" unless collections.all? { |c| c.size == size }
+        zipped = collections.first.zip(*collections.drop(1))
+        if block_given?
+          zipped.each do |generators|
+            yield(*generators.map { |g| Gen.generate(g) })
+          end
+        else
+          raise 'A block is expected with a property definition'
         end
-      else
-        raise 'A block is expected with a property definition'
       end
     end
   end
