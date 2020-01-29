@@ -1,3 +1,4 @@
+![Ruby](https://github.com/delonnewman/gen-test/workflows/Ruby/badge.svg)
 ![Gem](https://img.shields.io/gem/v/gen-test)
 
 Gen::Test
