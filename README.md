@@ -1,43 +1,29 @@
-# Gen::Test
+Gen::Test
+=========
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/gen/test`. To experiment with that code, run `bin/console` for an interactive prompt.
+Generative, property based testing for Ruby
 
-TODO: Delete this and the text above, and describe your gem
+Why?
+====
 
-## Installation
+Generative testing has much value for unit, acceptance and integration testing over TDD and BDD, while it's
+value doesn't come for free.
+[Others](https://www.youtube.com/watch?v=r5i_OiZw6Sw) [argue](http://www.quviq.com/products/quickcheck-for-c/)
+this point well.
 
-Add this line to your application's Gemfile:
+There seemed to be a need simple, extensible, implementation for Ruby, that wasn't a DSL or a framework. This
+module is still very incomplete, but it's proven useful.
 
-```ruby
-gem 'gen-test'
-```
+Install
+=======
 
-And then execute:
+    > gem install gen-test
 
-    $ bundle
+See Also
+========
 
-Or install it yourself as:
+- For Clojure [test.check](https://github.com/clojure/test.check)
+- For Haskell (the original version) [QuickCheck](https://hackage.haskell.org/package/QuickCheck)
+- For Erlang (the most complete version) [QuickCheck](http://www.quviq.com/products/erlang-quickcheck/)
 
-    $ gem install gen-test
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/gen-test. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
-
-## License
-
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-## Code of Conduct
-
-Everyone interacting in the Gen::Test project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/gen-test/blob/master/CODE_OF_CONDUCT.md).
+- There's quite a few different version for [Ruby](https://rubygems.org/search?utf8=%E2%9C%93&query=quickcheck)
