@@ -19,6 +19,12 @@ Install
 
     > gem install gen-test
 
+or, add
+
+    gem 'gen-test'
+
+to your Gemfile.
+
 See Also
 ========
 
@@ -26,4 +32,4 @@ See Also
 - For Haskell (the original version) [QuickCheck](https://hackage.haskell.org/package/QuickCheck)
 - For Erlang (the most complete version) [QuickCheck](http://www.quviq.com/products/erlang-quickcheck/)
 
-- There's quite a few different version for [Ruby](https://rubygems.org/search?utf8=%E2%9C%93&query=quickcheck)
+- There's quite a few different versions for [Ruby](https://rubygems.org/search?utf8=%E2%9C%93&query=quickcheck)
