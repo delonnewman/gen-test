@@ -1,3 +1,5 @@
+![Gem](https://img.shields.io/gem/v/gen-test)
+
 Gen::Test
 =========
 
