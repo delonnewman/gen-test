@@ -39,6 +39,15 @@ this point well.
 There seemed to be a need for a simple, extensible, implementation for Ruby, that isn't a DSL or a framework.
 This module strives to serve that purpose, it's still very incomplete, but it's proven useful.
 
+You can use Gen::Test along side other tests written in a different style and it's designed to be used with
+other testing frameworks like [Minitest](https://github.com/seattlerb/minitest) and [Rspec](https://rspec.info/).
+
+It's also extensible, defining a simple protocol for extensiblity. Just define a `generate` method that can
+be called with no arguments and returns your generated data on any object and it can be used as a generator.
+
+Many core objects have already been extended (see [lib/ext_core.rb](lib/ext_core.rb)). You can also make use
+of `Gen::Generator` which is a Proc-like object that implements the `generate` method.
+
 Install
 =======
 
@@ -49,6 +58,12 @@ or, add
     gem 'gen-test'
 
 to your Gemfile.
+
+Extentions
+==========
+
+- [Contracts::Gen](https://github.com/delonnewman/contracts-gen), defines generators for most of
+  contracts the [Contracts](https://github.com/egonSchiele/contracts.ruby) gem.
 
 See Also
 ========
