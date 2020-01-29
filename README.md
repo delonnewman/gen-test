@@ -1,5 +1,5 @@
 ![Ruby](https://github.com/delonnewman/gen-test/workflows/Ruby/badge.svg)
-![Gem](https://img.shields.io/gem/v/gen-test)
+[![Gem Version](https://badge.fury.io/rb/gen-test.svg)](https://badge.fury.io/rb/gen-test)
 
 Gen::Test
 =========
