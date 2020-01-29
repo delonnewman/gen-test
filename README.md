@@ -30,7 +30,7 @@ Generative or property based testing is an approach to testing where tests are a
 defintions for properties of the system being tested. While slower, generative testing has much value for
 unit, acceptance and integration testing over TDD and BDD.
 
-For example generative tests still have much value when they're written after your code, and when extentive
+For example, generative tests still have much value when they're written after your code, and when extensive
 can be quite useful for integration testing.
 
 [Others](https://www.youtube.com/watch?v=r5i_OiZw6Sw) [argue](http://www.quviq.com/products/quickcheck-for-c/)
