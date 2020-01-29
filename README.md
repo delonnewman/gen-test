@@ -6,18 +6,20 @@ Generative, property based testing for Ruby
 Synopsis
 ========
     
-    AddOne = lambda { |x| x + 1 }
+```ruby
+AddOne = lambda { |x| x + 1 }
 
-    class AddOneTest < Minitest::Test
-      include Gen::Test
+class AddOneTest < Minitest::Test
+  include Gen::Test
 
-      def test_incremented_for_all_integers
-        for_all Integer do |int|
-          inc = AddOne[int]
-          assert_equal(inc, int + 1)
-        end
-      end
+  def test_incremented_for_all_integers
+    for_all Integer do |int|
+      inc = AddOne[int]
+      assert_equal(inc, int + 1)
     end
+  end
+end
+```
 
 Why?
 ====
