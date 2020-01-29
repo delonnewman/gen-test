@@ -24,13 +24,18 @@ end
 Why?
 ====
 
-Generative testing has much value for unit, acceptance and integration testing over TDD and BDD, while it's
-value doesn't come for free.
+Generative or property based testing is an approach to testing where tests are automatically generated from
+defintions for properties of the system being tested. While slower, generative testing has much value for
+unit, acceptance and integration testing over TDD and BDD.
+
+For example generative tests still have much value when they're written after your code, and when extentive
+can be quite useful for integration testing.
+
 [Others](https://www.youtube.com/watch?v=r5i_OiZw6Sw) [argue](http://www.quviq.com/products/quickcheck-for-c/)
 this point well.
 
-There seemed to be a need simple, extensible, implementation for Ruby, that wasn't a DSL or a framework. This
-module is still very incomplete, but it's proven useful.
+There seemed to be a need for a simple, extensible, implementation for Ruby, that isn't a DSL or a framework.
+This module strives to serve that purpose, it's still very incomplete, but it's proven useful.
 
 Install
 =======
