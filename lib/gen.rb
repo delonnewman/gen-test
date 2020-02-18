@@ -36,10 +36,11 @@ module Gen
   end
 
   def generate(generator)
-    if generator.respond_to?(:call)
-      generator.call
-    elsif generator.respond_to?(:generate)
+    if generator.respond_to?(:generate)
       generator.generate
+    elsif generator.respond_to?(:call)
+      STDERR.puts "WARN: Objects that implement `call` are no longer automatically generators you must implement `generate`"
+      generator
     else
       generator
     end
