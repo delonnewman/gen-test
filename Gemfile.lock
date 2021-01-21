@@ -1,11 +1,7 @@
 PATH
   remote: .
   specs:
-<<<<<<< HEAD
     gen-test (0.2.0)
-=======
-    gen-test (0.1.3)
->>>>>>> 21051acee4b46f1eeecb911db4ea198f0e11c485
       faker (~> 1.9.6)
       regexp-examples (~> 1.5.0)
 
