@@ -10,12 +10,12 @@ module Gen
       base.include(Gen)
     end
 
-    def for_all(*generators)
-      for_n([LOWER_BOUND, UPPER_BOUND], *generators, &Proc.new)
+    def for_all(*generators, &block)
+      for_n([LOWER_BOUND, UPPER_BOUND], *generators, &block)
     end
   
-    def for_any(*generators)
-      for_n(1, *generators, &Proc.new)
+    def for_any(*generators, &block)
+      for_n(1, *generators, &block)
     end
     alias for_one for_any
   
