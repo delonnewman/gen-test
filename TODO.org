@@ -1,0 +1,7 @@
+#+title: Gen::Test TODOs
+
+* Remove Faker dependency
+
+** Implement core generators without Faker
+** Move any more advanced generators to another package with Faker as a dependency
+  

@@ -17,7 +17,7 @@ class String
   # @see Faker::String
   # @return [String]
   # TODO: add filtering
-  def self.generate(*_args)
+  def self.generate(*)
     Faker::String.random
   end
 end
@@ -29,7 +29,7 @@ class Symbol
   #
   # @see String#generate
   # @return [Symbol]
-  def self.generate(*_args)
+  def self.generate(*)
     String.generate.to_sym
   end
 end
@@ -40,7 +40,7 @@ class Float
   # Randomly generate a Float instance
   #
   # @return [Float]
-  def self.generate(*_args)
+  def self.generate(*)
     Random.rand(10e10)
   end
 end
@@ -52,10 +52,8 @@ class Integer
   # @return [Integer]
   def self.generate(min: nil, max: nil, bit_length: nil)
     i = Random.rand(10e10).to_i
-    if !min.nil? or !max.nil? or !bit_length.nil?
-      while i > max or i < min or i.bit_length > bit_length
-        i = Random.rand(10e10).to_i
-      end
+    if !min.nil? || !max.nil? || !bit_length.nil?
+      i = Random.rand(10e10).to_i while i > max || i < min || i.bit_length > bit_length
     end
 
     if Random.rand < 0.5
@@ -77,7 +75,7 @@ end
 # Some extentions to the core TrueClass
 class TrueClass
   # Return true
-  def self.generate(*_args)
+  def self.generate(*)
     true
   end
 end
@@ -85,7 +83,7 @@ end
 # Some extentions to the core NilClass
 class NilClass
   # Return nil
-  def self.generate(*_args)
+  def self.generate(*)
     nil
   end
 end
@@ -93,17 +91,17 @@ end
 # Some extentions to the core Array class
 class Array
   DEFAULT_GENERATIVE_TYPES = [
-      Integer,
-      String,
-      Float,
-      FalseClass,
-      TrueClass,
-      NilClass
-  ]
+    Integer,
+    String,
+    Float,
+    FalseClass,
+    TrueClass,
+    NilClass
+  ].freeze
 
   # Randomly generate an Array
   def self.generate(min: 0, max: 30, type: nil)
-    (0..Faker::Number.between(min, max)).map do
+    (0..Integer.generate(min: min, max: max)).map do
       if type.nil?
         DEFAULT_GENERATIVE_TYPES.sample.generate
       else
@@ -131,7 +129,7 @@ class Set
   end
 
   # Randomly select an element of the Set
-  def generate(*_args)
+  def generate(*)
     to_a.sample
   end
 end
@@ -139,30 +137,31 @@ end
 # Some extentions to the core Hash class
 class Hash
   DEFAULT_GENERATIVE_KEY_TYPES = [
-      Symbol,
-      String,
-      Integer
-  ]
+    Symbol,
+    String,
+    Integer
+  ].freeze
 
   DEFAULT_GENERATIVE_VALUE_TYPES = [
-      Integer,
-      String,
-      Float,
-      FalseClass,
-      TrueClass,
-      NilClass
-  ]
+    Integer,
+    String,
+    Float,
+    FalseClass,
+    TrueClass,
+    NilClass
+  ].freeze
 
   # Randomly generate a Hash
   def self.generate(min: 0, max: 30, key_type: nil, value_type: nil)
-    (0..Faker::Number.between(min, max)).reduce({}) do |h, _|
-      kt = key_type || DEFAULT_GENERATIVE_KEY_TYPES.sample
+    (0..Integer.generate(min: min, max: max)).reduce({}) do |h, _|
+      kt = key_type   || DEFAULT_GENERATIVE_KEY_TYPES.sample
       vt = value_type || DEFAULT_GENERATIVE_VALUE_TYPES.sample
-      h.merge(kt.generate => vt.generate)
+
+      h.merge!(kt.generate => vt.generate)
     end
   end
 
-  def generate(*_args)
+  def generate(*)
     transform_values(&:generate)
   end
 end
@@ -170,8 +169,8 @@ end
 # Some extentions to the core Range class
 class Range
   # Randomly generate a value within the range
-  def generate(*_args)
-    if first.is_a? Numeric and last.is_a? Numeric
+  def generate(*)
+    if first.is_a?(Numeric) && last.is_a?(Numeric)
       Faker::Number.between(first, last)
     else
       to_a.sample
@@ -188,7 +187,7 @@ end
 class DateTime
   def self.generate(*args)
     if args.empty?
-      Time.at(Faker::Number.between(0, Time.now.to_i))
+      Time.generate
     else
       Faker::Time.between(*args)
     end.to_datetime
@@ -198,17 +197,17 @@ end
 class Date
   def self.generate(*args)
     if args.empty?
-      Time.at(Faker::Number.between(0, Time.now.to_i))
+      Time.generate.to_date
     else
       Faker::Date.between(*args)
-    end.to_date
+    end
   end
 end
 
 class Time
   def self.generate(*args)
     if args.empty?
-      Time.at(Faker::Number.between(0, Time.now.to_i))
+      Time.at(Integer.generate(min: 0, max: Time.now.to_i))
     else
       Faker::Time.between(*args)
     end.to_time
@@ -216,6 +215,7 @@ class Time
 end
 
 class Proc
+  # Procs are generators
   def generate(*args)
     call(*args)
   end
